@@ -33,6 +33,34 @@ npm run dev     # preview at localhost
 npm run build   # static output in dist/
 ```
 
+## Authoring conventions (codified 2026-09-05)
+
+These rules are enforced by convention and by `blume.config.ts` frontmatter
+schemas; the build is the referee (unknown keys fail).
+
+1. **Titles live in frontmatter only.** Never put a `# H1` in the body —
+   Blume renders the page title from frontmatter and duplicates a body H1.
+   Start bodies at `##`.
+2. **Page contract.** Every page carries `id` (required — graph key),
+   `type` (section/person/project/decision/briefing/workflow/commitment/goal/
+   routine/note), `category` (personal|professional), `status`
+   (draft|current|archive), `updated`, `tags`, `tools`.
+3. **Section SKILL.md pages.** Each section folder's `index.md` documents
+   Description, Purpose, Content overview, Formatting guidelines,
+   Recommended tools — the template for that section.
+4. **High-frequency content (daily briefings): date hierarchy.**
+   `briefings/2026/09/05-morning-briefing.md` — year/month folders with
+   `meta.ts` titles, no `index.md` inside date folders (avoids landing-page
+   title duplication and sidebar clutter), date kept in the file name.
+5. **Numeric prefixes sort and are stripped from URLs** (`2026-09-05-…` →
+   route `/…/09-05-…`). Sort is ascending, so for newest-first pin each
+   folder's `meta.ts` `pages` array.
+6. **Sidebar shaping.** Global `display: "group"`; a section with many
+   children sets `sidebar.display: page` (drill panel) on its index page or
+   `display` in `meta.ts`; per-page `sidebar: { label, order, hidden, badge }`.
+7. **No secrets in this repo.** Anything sensitive lives in `pass`
+   (same-named entries); the repo is public and feeds GitHub Pages.
+
 ## Deploy credentials
 
 - `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` GitHub secrets (see

@@ -1,15 +1,13 @@
 ---
-id: professional/briefings
-type: section
+title: Briefings — authoring guide
+id: professional/briefings/briefing-guide
+type: briefing
 category: professional
+status: current
 updated: 2026-09-05
-tags: [section]
-sidebar:
-  display: page
-title: Briefings
+tags: [section, guide]
+tools: [macro, calendar, push]
 ---
-
-# Briefings
 
 ## Description
 Meeting and executive briefs — purpose, context, agenda, decisions.
@@ -19,7 +17,7 @@ Arrive prepared to every engagement; capture decisions out of meetings.
 
 ## Content overview
 Date hierarchy in the sidebar: `2026/09/05-morning-briefing.md`.
-Year and month are folders with `meta.ts` titles; the date stays in the file
+Year and month are folders with `meta.ts` titles; keep a date in the file
 name so ordering follows the calendar.
 
 ## Formatting guidelines
@@ -32,5 +30,3 @@ name so ordering follows the calendar.
 
 ## Recommended tools
 macro, calendar, push
-
-Per-page contract: `id`, `type`, `category`, `updated` (+ `status`, `tags` as needed).

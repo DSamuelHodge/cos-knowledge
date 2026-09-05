@@ -1,6 +1,5 @@
 import { defineMeta } from "blume";
 
 export default defineMeta({
-  title: "September 2026",
-  pages: ["05-morning-briefing"],
+  title: "Briefings",
 });
