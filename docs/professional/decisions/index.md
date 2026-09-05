@@ -8,8 +8,6 @@ tags: [section]
 title: Decisions
 ---
 
-# Decisions
-
 ## Description
 Decision log: what was decided, why, and consequences.
 

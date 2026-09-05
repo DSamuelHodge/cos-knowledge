@@ -8,8 +8,6 @@ tags: [section]
 title: Workflows
 ---
 
-# Workflows
-
 ## Description
 Procedures and SOPs — repeatable, improving how-to knowledge.
 

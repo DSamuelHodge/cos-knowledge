@@ -8,8 +8,6 @@ tags: [section]
 title: Cadence
 ---
 
-# Cadence
-
 ## Description
 Recurring rhythm: standups, reviews, automation schedules.
 

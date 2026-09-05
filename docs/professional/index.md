@@ -7,8 +7,6 @@ tags: [section]
 title: Professional
 ---
 
-# Professional
-
 Work-side knowledge: briefings, projects, workflows, decisions, commitments, people, cadence.
 
 Every engagement, project, and commitment has a fresh, searchable record — arrive prepared, follow through.

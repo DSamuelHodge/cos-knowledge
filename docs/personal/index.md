@@ -7,8 +7,6 @@ tags: [section]
 title: Personal
 ---
 
-# Personal
-
 Life-side knowledge: people, health, finances, home, learning, goals, travel.
 
 A durable, private record of Derrick's personal context so the CoS can protect time, relationships, and obligations.

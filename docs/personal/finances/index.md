@@ -8,8 +8,6 @@ tags: [section]
 title: Finances
 ---
 
-# Finances
-
 ## Description
 Budgets, bills, accounts, recurring obligations.
 

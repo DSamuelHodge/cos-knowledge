@@ -8,8 +8,6 @@ tags: [section]
 title: People
 ---
 
-# People
-
 ## Description
 Family, friends, and key personal relationships — per-person durable context.
 

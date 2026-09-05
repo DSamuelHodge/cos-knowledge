@@ -6,8 +6,6 @@ tags: [index]
 title: CoS Knowledge
 ---
 
-# CoS Knowledge
-
 Derrick Hodge — unified personal & professional knowledge base.
 
 A Markdown folder committed to GitHub, built with Blume, served at

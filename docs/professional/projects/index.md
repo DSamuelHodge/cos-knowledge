@@ -8,8 +8,6 @@ tags: [section]
 title: Projects
 ---
 
-# Projects
-
 ## Description
 Professional projects: goals, owners, status, next actions.
 

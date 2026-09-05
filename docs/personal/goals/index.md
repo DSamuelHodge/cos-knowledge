@@ -8,8 +8,6 @@ tags: [section]
 title: Goals
 ---
 
-# Goals
-
 ## Description
 Personal goals and habit routines.
 

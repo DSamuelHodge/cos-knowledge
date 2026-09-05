@@ -8,8 +8,6 @@ tags: [section]
 title: Home
 ---
 
-# Home
-
 ## Description
 Home and life operations: property, vehicles, logistics.
 

@@ -8,8 +8,6 @@ tags: [section]
 title: Learning
 ---
 
-# Learning
-
 ## Description
 Education, courses, books, experiments.
 

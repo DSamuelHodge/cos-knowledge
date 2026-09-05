@@ -8,8 +8,6 @@ tags: [section]
 title: Commitments
 ---
 
-# Commitments
-
 ## Description
 Follow-ups, promises, deadlines in the professional world.
 

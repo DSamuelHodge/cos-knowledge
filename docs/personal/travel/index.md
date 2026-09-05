@@ -8,8 +8,6 @@ tags: [section]
 title: Travel
 ---
 
-# Travel
-
 ## Description
 Trips, itineraries, places.
 

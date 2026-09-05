@@ -8,8 +8,6 @@ tags: [section]
 title: Health
 ---
 
-# Health
-
 ## Description
 Health, wellbeing, appointments, recovery context.
 

@@ -8,8 +8,6 @@ tags: [section]
 title: People
 ---
 
-# People
-
 ## Description
 Professional contacts, roles, org map.
 
