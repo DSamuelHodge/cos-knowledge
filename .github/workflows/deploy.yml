@@ -29,10 +29,12 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client
-      # Primary: Cloudflare Worker (Blume server output -> MCP at /mcp)
+      # Primary: Cloudflare Worker (Blume server output -> MCP at /mcp).
+      # Custom domain is bound via the Workers domains API (zone routes 403
+      # with repo creds); run it once after creating the worker.
       - name: Deploy to Cloudflare Workers
         run: |
-          node -e "const fs=require('fs');const p='dist/server/wrangler.json';const c=JSON.parse(fs.readFileSync(p));c.name='cos-knowledge';c.routes=[{pattern:'cos.hodgederrick.com/*',zone_name:'hodgederrick.com'}];fs.writeFileSync(p,JSON.stringify(c));"
+          node -e "const fs=require('fs');const p='dist/server/wrangler.json';const c=JSON.parse(fs.readFileSync(p));c.name='cos-knowledge';fs.writeFileSync(p,JSON.stringify(c));"
           npx wrangler deploy -c dist/server/wrangler.json
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
