@@ -1,0 +1,14 @@
+{
+  "name": "cos-knowledge",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "blume dev",
+    "build": "blume build",
+    "doctor": "blume doctor"
+  },
+  "dependencies": {
+    "blume": "^1.6.0",
+    "zod": "^4.5.4"
+  }
+}
