@@ -10,5 +10,8 @@
   "dependencies": {
     "blume": "^1.6.0",
     "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
   }
 }
