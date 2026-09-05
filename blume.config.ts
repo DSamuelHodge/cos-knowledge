@@ -9,8 +9,16 @@ export default defineConfig({
     root: "docs",
   },
   deployment: {
-    output: "static",
+    output: "server",
+    adapter: "cloudflare",
     site: "https://cos.hodgederrick.com",
+  },
+  ai: {
+    llmsTxt: true,
+    mcp: {
+      enabled: true,
+      route: "/mcp",
+    },
   },
   github: {
     owner: "DSamuelHodge",
@@ -32,9 +40,6 @@ export default defineConfig({
       { label: "Personal", path: "/personal", icon: "book-open" },
       { label: "Professional", path: "/professional", icon: "rocket" },
     ],
-  },
-  ai: {
-    llmsTxt: true,
   },
   seo: {
     sitemap: true,
