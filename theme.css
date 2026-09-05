@@ -11,3 +11,11 @@
   --blume-accent-foreground: oklch(0.16 0.02 70);
   --blume-action: oklch(0.8 0.12 78);
 }
+
+/* Blume paints active tabs/sidebar items in foreground by default — make the
+   current page surface in topaz so the accent is actually visible. */
+a[aria-current],
+[aria-current="true"],
+[aria-current="page"] {
+  color: var(--blume-accent);
+}
