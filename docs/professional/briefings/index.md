@@ -1,11 +1,10 @@
 ---
-title: Briefings — authoring guide
-id: professional/briefings/briefing-guide
-type: briefing
+title: Briefings
+id: professional/briefings
+type: section
 category: professional
-status: current
 updated: 2026-09-05
-tags: [section, guide]
+tags: [section]
 tools: [macro, calendar, push]
 ---
 
