@@ -61,6 +61,19 @@ schemas; the build is the referee (unknown keys fail).
 7. **No secrets in this repo.** Anything sensitive lives in `pass`
    (same-named entries); the repo is public and feeds GitHub Pages.
 
+## Agent / API surface (server build)
+
+- **MCP server**: `https://cos.hodgederrick.com/mcp` (Streamable HTTP) —
+  tools `search_docs`, `get_page`, `list_pages`, `get_navigation`; discovery
+  at `/.well-known/mcp.json`. Connect: `claude mcp add --transport http
+  cos kb https://cos.hodgederrick.com/mcp`
+- **Programmatic search without MCP**: `GET /blume-search.json` (Orama index) —
+  fetch and query with any Orama client.
+- **Raw Markdown**: `/{route}.md` (200 for leaf and index pages) or
+  `GET /{route}` with `Accept: text/markdown` (server negotiation).
+- **Corpus**: `llms.txt`, `llms-full.txt`; discovery manifest
+  `agent-readability.json`.
+
 ## Deploy credentials
 
 - `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` GitHub secrets (see
