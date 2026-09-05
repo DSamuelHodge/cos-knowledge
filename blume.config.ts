@@ -23,6 +23,16 @@ export default defineConfig({
   search: {
     provider: "orama",
   },
+  navigation: {
+    sidebar: {
+      display: "group",
+    },
+    tabs: [
+      { label: "Home", path: "/", icon: "home" },
+      { label: "Personal", path: "/personal", icon: "book-open" },
+      { label: "Professional", path: "/professional", icon: "rocket" },
+    ],
+  },
   ai: {
     llmsTxt: true,
   },
