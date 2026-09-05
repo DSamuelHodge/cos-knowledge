@@ -10,5 +10,6 @@ export default defineMeta({
     "commitments",
     "people",
     "cadence",
+    "ideas",
   ],
 });
