@@ -1,0 +1,13 @@
+/* CoS Knowledge theme overrides — last word over config tokens.
+   Accent itself is set in blume.config.ts (topaz, per color mode). */
+
+:root {
+  /* Text/icons sitting on the topaz accent: deep warm black keeps contrast */
+  --blume-accent-foreground: oklch(0.17 0.02 70);
+  --blume-action: oklch(0.7 0.13 78);
+}
+
+:root[data-theme="dark"] {
+  --blume-accent-foreground: oklch(0.16 0.02 70);
+  --blume-action: oklch(0.8 0.12 78);
+}

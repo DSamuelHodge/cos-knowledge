@@ -39,7 +39,11 @@ export default defineConfig({
     repo: "cos-knowledge",
   },
   theme: {
-    accent: "blue",
+    // Topaz — warm golden accent on the black/white base.
+    accent: {
+      light: "oklch(0.7 0.13 78)", // golden topaz on white
+      dark: "oklch(0.8 0.12 78)", // brighter topaz on black
+    },
     mode: "system",
   },
   search: {
