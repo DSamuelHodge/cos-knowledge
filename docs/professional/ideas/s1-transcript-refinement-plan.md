@@ -50,9 +50,10 @@ upload (audio) ──► Whisper v3 Turbo ──► transcripts/{id}.md (+ .vtt)
   `chat_template_kwargs: { enable_thinking: false }` (Qwen3 thinks by default
   → blank output), greedy (temperature 0), `max_new_tokens = 1.3×input + 32`,
   chunks ≤1,000 tokens at sentence boundaries, empty output = valid result.
-- **Extraction LLM** — remaining step (summary + notes/tasks JSON); same
-  service, JSON-mode schema `{summary, notes[], tasks[], action_items[]}`,
-  validated; invalid → retry once → `failed`.
+- **Extraction LLM** — shipped (default `Qwen/Qwen2.5-7B-Instruct` via HF
+  Inference, var `EXTRACT_MODEL`): JSON-mode `{summary, notes[], tasks[],
+  action_items[]}`, fenced-JSON recovery, malformed → retry once → failure
+  logged (never fails the asset).
 - **Prompt/schema artifacts** will live in `media-pipeline/` (prompt + schema
   files) so they version like code.
 
@@ -63,7 +64,7 @@ upload (audio) ──► Whisper v3 Turbo ──► transcripts/{id}.md (+ .vtt)
 | P0 — pick model + serving | ✅ S1-mini identified; HF Inference serverless |
 | P1 — refine stage in pipeline | ✅ shipped `media-pipeline#1` (`src/refine.ts`, `derived/refined/{id}.md`, `GET /assets/{id}/refined`, migration 0002, 70 tests) |
 | P1 — production deploy | ⏳ pending — needs `HF_TOKEN` worker secret + `wrangler d1 migrations apply` + `wrangler deploy` |
-| P2 — notes/tasks extraction + publish | 🔲 next |
+| P2 — extraction in pipeline | ✅ shipped `media-pipeline#2` (`src/extract.ts`, `derived/notes/{id}.json`, `GET /assets/{id}/notes`, migration 0003, 78 tests) — auto-publish to KB still pending |
 | P3 — TTS playback | 🔲 future |
 
 ## 3. Data & storage (additions)

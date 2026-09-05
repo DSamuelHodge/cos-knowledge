@@ -30,6 +30,7 @@ frontmatter-compliant pages with links back to the media.
 | Agent docs | `/llms.txt`, `/openapi.json` |
 | Upload token | `pass show cloudflare/media-pipeline/upload-token` (Bearer, uploads only; reads public) |
 | Refine (S1-mini) | `GET /assets/{id}/refined` — S1-mini cleaned transcript (derived/refined/{id}.md); requires `HF_TOKEN` worker secret + `REFINE_MODEL` var |
+| Notes extraction | `GET /assets/{id}/notes` — JSON `{summary, notes, tasks, action_items}` (derived/notes/{id}.json), LLM via `EXTRACT_MODEL` |
 | Source | `github.com/DSamuelHodge/media-pipeline` (R2 + D1 + Workflows + Whisper v3 Turbo + Firecrawl + S1-mini refine) |
 
 Kinds: `image`, `video`, `audio`, `pdf`. Images/video → `201` ready on
