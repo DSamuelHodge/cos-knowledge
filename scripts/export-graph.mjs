@@ -119,12 +119,50 @@ const payload = {
 };
 
 mkdirSync(path.dirname(OUT), { recursive: true });
+
+// ---- health stats (Karpathy-style lint: orphans, degree, type spread) ----
+const ids = new Set(payload.nodes.map((n) => n.id));
+const typeCounts = {};
+const categoryCounts = {};
+const degree = new Map();
+for (const n of payload.nodes) {
+  typeCounts[n.type] = (typeCounts[n.type] || 0) + 1;
+  if (n.category) categoryCounts[n.category] = (categoryCounts[n.category] || 0) + 1;
+  degree.set(n.id, 0);
+}
+for (const e of payload.edges) {
+  degree.set(e.source, (degree.get(e.source) || 0) + 1);
+  degree.set(e.target, (degree.get(e.target) || 0) + 1);
+}
+const degVals = [...degree.values()];
+const orphans = payload.nodes.filter((n) => !degree.get(n.id)).map((n) => n.id);
+payload.stats = {
+  nodeCount: payload.nodes.length,
+  edgeCount: payload.edges.length,
+  typeCounts,
+  categoryCounts,
+  degree: {
+    min: Math.min(...degVals),
+    max: Math.max(...degVals),
+    mean: Number((degVals.reduce((a, b) => a + b, 0) / Math.max(degVals.length, 1)).toFixed(2)),
+    orphanCount: orphans.length,
+    orphans,
+  },
+};
+const dangling = edges.filter((e) => !ids.has(e.source) || !ids.has(e.target)).length;
 writeFileSync(OUT, JSON.stringify(payload, null, 1));
 
-const ids = new Set(payload.nodes.map((n) => n.id));
-const dangling = edges.filter((e) => !ids.has(e.source) || !ids.has(e.target)).length;
+// ---- log.md: append-only chronological index, greppable from git ----
+const { execFileSync } = await import("node:child_process");
+try {
+  const gitLog = execFileSync("git", ["log", "-30", "--format=## [%ad] %s", "--date=format:%Y-%m-%d", "--", "docs"], { cwd: ROOT, encoding: "utf8" });
+  writeFileSync(path.join(ROOT, "dist", "client", "log.md"), "# CoS KB change log (git-derived)\n\n" + gitLog);
+} catch (e) {
+  console.warn("log.md generation skipped:", e.message);
+}
+
 console.log(
   `knowledge-graph: ${payload.nodes.length} nodes, ${payload.edges.length} edges ` +
-    `(dangling: ${dangling}) -> ${path.relative(ROOT, OUT)}`,
+    `(dangling: ${dangling}, orphans: ${orphans.length}) -> ${path.relative(ROOT, OUT)}`,
 );
 process.exit(dangling ? 1 : 0);
