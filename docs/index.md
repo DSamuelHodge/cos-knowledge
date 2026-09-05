@@ -3,6 +3,7 @@ id: index
 type: note
 updated: 2026-09-05
 tags: [index]
+title: CoS Knowledge
 ---
 
 # CoS Knowledge

@@ -5,6 +5,7 @@ category: personal
 updated: 2026-09-05
 tools: [crm, contacts, push]
 tags: [section]
+title: People
 ---
 
 # People

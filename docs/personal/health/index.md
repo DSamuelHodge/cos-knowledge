@@ -5,6 +5,7 @@ category: personal
 updated: 2026-09-05
 tools: ['calendar', 'push']
 tags: [section]
+title: Health
 ---
 
 # Health

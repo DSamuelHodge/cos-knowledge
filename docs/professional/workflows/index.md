@@ -5,6 +5,7 @@ category: professional
 updated: 2026-09-05
 tools: ['push', 'macro']
 tags: [section]
+title: Workflows
 ---
 
 # Workflows

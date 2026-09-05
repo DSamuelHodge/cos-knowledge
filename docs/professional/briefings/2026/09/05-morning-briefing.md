@@ -1,6 +1,6 @@
 ---
 title: Morning Briefing — 2026-09-05
-id: professional/briefings/2026-09-05-morning-briefing
+id: professional/briefings/2026/09/05-morning-briefing
 type: briefing
 category: professional
 status: current
@@ -8,8 +8,6 @@ updated: 2026-09-05
 tags: [briefing, morning, daily]
 tools: [macro, calendar, push]
 ---
-
-# Morning Briefing — 2026-09-05
 
 ## Context
 
@@ -31,11 +29,11 @@ tools: [macro, calendar, push]
 
 - Adopt Blume knowledge base as the single catch-all (approved).
 - Keep the old Hugo COS site exactly as is (no more work on it).
-- Two-token Cloudflare split: general key (deploy) + zone token (DBT/DNS).
+- Two-token Cloudflare split: general key (deploy) + zone token (DNS).
 
 ## Follow-ups
 
-1. Check smoke: this briefing renders in the `/professional/briefings/`
-   section with the correct nav and frontmatter handling.
+1. Smoke: this briefing renders in `/professional/briefings/2026/09/` with
+   clean single-title headers.
 2. When Nikki replies, log the confirmation in `personal/people`.
 3. Book the calendar connection + Meet link when the slot is chosen.

@@ -5,6 +5,7 @@ category: professional
 updated: 2026-09-05
 tools: ['macro', 'crm']
 tags: [section]
+title: People
 ---
 
 # People

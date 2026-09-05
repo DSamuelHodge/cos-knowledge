@@ -3,23 +3,32 @@ id: professional/briefings
 type: section
 category: professional
 updated: 2026-09-05
-tools: ['macro', 'calendar', 'push']
 tags: [section]
+sidebar:
+  display: page
+title: Briefings
 ---
 
 # Briefings
 
 ## Description
-Meeting and event briefs with context, agenda, and decisions.
+Meeting and executive briefs — purpose, context, agenda, decisions.
 
 ## Purpose
 Arrive prepared to every engagement; capture decisions out of meetings.
 
 ## Content overview
-One page per briefing: `YYYY-MM-DD-slug.md`, linked to the calendar event and source email.
+Date hierarchy in the sidebar: `2026/09/05-morning-briefing.md`.
+Year and month are folders with `meta.ts` titles; the date stays in the file
+name so ordering follows the calendar.
 
 ## Formatting guidelines
-Frontmatter: id, type=briefing, attendees (array), updated, status. Decision section at top when known.
+- Title lives in frontmatter only — no `# H1` inside the body (Blume renders
+  the title from frontmatter; a body H1 duplicates it).
+- Frontmatter: id, type=briefing, updated, status, tags, tools. Link the
+  source calendar event / email where relevant.
+- Newest at top reads better for logs — pin order with each month's `meta.ts`
+  `pages` array instead of relying on numeric prefixes (which sort ascending).
 
 ## Recommended tools
 macro, calendar, push

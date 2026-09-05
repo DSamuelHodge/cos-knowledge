@@ -5,6 +5,7 @@ category: personal
 updated: 2026-09-05
 tools: ['kaneo', 'push']
 tags: [section]
+title: Goals
 ---
 
 # Goals

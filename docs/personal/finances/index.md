@@ -5,6 +5,7 @@ category: personal
 updated: 2026-09-05
 tools: ['push', 'notes']
 tags: [section]
+title: Finances
 ---
 
 # Finances

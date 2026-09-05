@@ -4,6 +4,7 @@ category: personal
 type: section
 updated: 2026-09-05
 tags: [section]
+title: Personal
 ---
 
 # Personal
