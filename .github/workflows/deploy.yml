@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Export knowledge graph
+        run: node scripts/export-graph.mjs
       # GH Pages fallback artifact
       - uses: actions/upload-pages-artifact@v3
         with:

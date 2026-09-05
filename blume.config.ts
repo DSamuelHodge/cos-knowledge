@@ -7,6 +7,20 @@ export default defineConfig({
     "Derrick Hodge — unified personal & professional knowledge base. Briefs, projects, workflows, decisions, commitments, people, and life operations.",
   content: {
     root: "docs",
+    // Facets make category/status filterable metadata in search_docs
+    // (MCP `filters`) and the search dialog, per content type.
+    types: {
+      section: { facets: ["category", "status"] },
+      person: { facets: ["category", "status"] },
+      project: { facets: ["category", "status"] },
+      decision: { facets: ["category", "status"] },
+      briefing: { facets: ["category", "status"] },
+      workflow: { facets: ["category", "status"] },
+      commitment: { facets: ["category", "status"] },
+      goal: { facets: ["category", "status"] },
+      routine: { facets: ["category", "status"] },
+      note: { facets: ["category", "status"] },
+    },
   },
   deployment: {
     output: "server",
