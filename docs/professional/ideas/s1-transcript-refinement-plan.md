@@ -38,18 +38,33 @@ upload (audio) ──► Whisper v3 Turbo ──► transcripts/{id}.md (+ .vtt)
 
 ## Model layer
 
-- **S1** — the cleanup model, called through **Workers AI / AI Gateway**
-  (model id env-driven: `REFINE_MODEL`). First implementation task: confirm
-  S3 availability through this account `GET /accounts/{a}/ai/models` (token:
-  `pass cloudflare/workers-ai` to be created).
-- **Fallback chain** in code: `S1 → Qwen3-32B → Llama-3.3-70B` if a model id
-  is missing or fails; the worker logs which model produced the refinement.
-- **Extraction LLM** — same service, JSON-mode schema:
-  `{ summary, notes: string[], tasks: {text, priority?, due?}[],
-  action_items: string[] }`; validated against a zod schema served by the
-  repo; invalid output → retry once → `failed` status.
-- **Edit/prompt artifacts** live in `media-pipeline/refine/` (prompt.md,
-  schema.json) so prompts are versioned like code.
+- **S1 resolved** = **superwhisper/s1-mini** — a 0.6B ASR text *normalizer*
+  (Qwen3-0.6B finetune; Apache 2.0 + naming clause), not a chat model. It
+  does one job: clean raw ASR text (fillers out, numbers/dates/currencies/
+  emails rendered written form). Served via **Hugging Face Inference**
+  serverless (`HF_TOKEN`), model id env-driven (`REFINE_MODEL`, default
+  `superwhisper/s1-mini`). Model card:
+  [huggingface.co/superwhisper/s1-mini](https://huggingface.co/superwhisper/s1-mini).
+- **Request format (card-critical):** exact system prompt + control line
+  `[Styling: semi-formal] [Structure: lists] [Context: general]`,
+  `chat_template_kwargs: { enable_thinking: false }` (Qwen3 thinks by default
+  → blank output), greedy (temperature 0), `max_new_tokens = 1.3×input + 32`,
+  chunks ≤1,000 tokens at sentence boundaries, empty output = valid result.
+- **Extraction LLM** — remaining step (summary + notes/tasks JSON); same
+  service, JSON-mode schema `{summary, notes[], tasks[], action_items[]}`,
+  validated; invalid → retry once → `failed`.
+- **Prompt/schema artifacts** will live in `media-pipeline/` (prompt + schema
+  files) so they version like code.
+
+## Implementation status
+
+| Step | Status |
+|---|---|
+| P0 — pick model + serving | ✅ S1-mini identified; HF Inference serverless |
+| P1 — refine stage in pipeline | ✅ shipped `media-pipeline#1` (`src/refine.ts`, `derived/refined/{id}.md`, `GET /assets/{id}/refined`, migration 0002, 70 tests) |
+| P1 — production deploy | ⏳ pending — needs `HF_TOKEN` worker secret + `wrangler d1 migrations apply` + `wrangler deploy` |
+| P2 — notes/tasks extraction + publish | 🔲 next |
+| P3 — TTS playback | 🔲 future |
 
 ## 3. Data & storage (additions)
 

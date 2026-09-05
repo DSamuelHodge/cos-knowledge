@@ -29,7 +29,8 @@ frontmatter-compliant pages with links back to the media.
 | Public files | `https://media.hodgeluke.com` (+ `cdn-cgi/image/…` zone transforms) |
 | Agent docs | `/llms.txt`, `/openapi.json` |
 | Upload token | `pass show cloudflare/media-pipeline/upload-token` (Bearer, uploads only; reads public) |
-| Source | `github.com/DSamuelHodge/media-pipeline` (R2 + D1 + Workflows + Whisper v3 Turbo + Firecrawl) |
+| Refine (S1-mini) | `GET /assets/{id}/refined` — S1-mini cleaned transcript (derived/refined/{id}.md); requires `HF_TOKEN` worker secret + `REFINE_MODEL` var |
+| Source | `github.com/DSamuelHodge/media-pipeline` (R2 + D1 + Workflows + Whisper v3 Turbo + Firecrawl + S1-mini refine) |
 
 Kinds: `image`, `video`, `audio`, `pdf`. Images/video → `201` ready on
 arrival; audio/PDF → `202`, poll `/assets/{id}/status` until `ready|failed`.
@@ -50,8 +51,13 @@ curl -X POST https://ingest.hodgeluke.com/upload \
 ```bash
 curl https://ingest.hodgeluke.com/assets/<id>/status
 curl https://ingest.hodgeluke.com/assets/<id>/transcript   # audio
+curl https://ingest.hodgeluke.com/assets/<id>/refined      # audio, S1-mini cleaned
 curl https://ingest.hodgeluke.com/assets/<id>/markdown      # pdf
 ```
+
+Refine runs best-effort inside the audio pipeline (absent `HF_TOKEN` → the
+stage is skipped; failures never fail the asset). `refined` may legitimately
+be empty for filler-only audio; `409` until present.
 
 ### 3. Extract notes and tasks
 
@@ -72,8 +78,10 @@ From transcript/Markdown, produce frontmatter-compliant pages:
 ## Lane notes
 
 - **Whisper v3 Turbo** (audio): transcript + VTT in `derived/transcripts/`.
-  Cleanup pass (S1-class model) is planned to polish transcripts before
-  note extraction.
+- **S1-mini refine** (shipped in media-pipeline, see
+  [S1 integration plan](../ideas/s1-transcript-refinement-plan.md)): the raw
+  ASR text is cleaned (fillers out, numbers/dates/emails normalized) by
+  `superwhisper/s1-mini` via HF Inference before note extraction.
 - **Firecrawl → toMarkdown** (PDF): research docs become clean Markdown;
   run the extraction step above on the result.
 - **Shared folder**: treat the pipeline as the shared inbox — anyone (Derrick
