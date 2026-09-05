@@ -36,7 +36,7 @@ jobs:
       - name: Deploy to Cloudflare Pages (advanced worker)
         run: |
           cp dist/server/blume-worker.mjs dist/client/_worker.js
-          cp dist/server/entry.mjs dist/server/virtual_astro_middleware.mjs dist/client/
+          cp -r dist/server/entry.mjs dist/server/virtual_astro_middleware.mjs dist/server/chunks dist/client/
           npx wrangler pages deploy dist/client --project-name=cos-knowledge --branch main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
