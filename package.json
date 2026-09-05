@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "blume dev",
     "build": "blume build",
+    "graph": "node scripts/export-graph.mjs",
     "doctor": "blume doctor"
   },
   "dependencies": {

@@ -73,6 +73,12 @@ schemas; the build is the referee (unknown keys fail).
   `GET /{route}` with `Accept: text/markdown` (server negotiation).
 - **Corpus**: `llms.txt`, `llms-full.txt`; discovery manifest
   `agent-readability.json`.
+- **Knowledge graph**: `knowledge-graph.json` — materialized `{nodes, edges}`
+  from page frontmatter (`id`/`type`/`category`/`status`/`tags`/`tools`) and
+  relative `.md` links. Emitted by `npm run graph` after every build.
+- **Facets**: `category`/`status` are facet keys per content type — filter
+  `search_docs` via the MCP `filters` argument (`{"category":"professional"}`)
+  and the on-page search dialog.
 
 ## Deploy credentials
 
