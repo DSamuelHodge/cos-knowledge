@@ -63,8 +63,9 @@ upload (audio) ──► Whisper v3 Turbo ──► transcripts/{id}.md (+ .vtt)
 |---|---|
 | P0 — pick model + serving | ✅ S1-mini identified; HF Inference serverless |
 | P1 — refine stage in pipeline | ✅ shipped `media-pipeline#1` (`src/refine.ts`, `derived/refined/{id}.md`, `GET /assets/{id}/refined`, migration 0002, 70 tests) |
-| P1 — production deploy | ⏳ pending — needs `HF_TOKEN` worker secret + `wrangler d1 migrations apply` + `wrangler deploy` |
+| P1 — production deploy | ✅ deployed + wired — **blocked by HF serverless DNS outage** (`api-inference.huggingface.co` unresolvable platform-wide; fails 530/1016 *through* the CF AI Gateway too) — awaiting HF recovery; dedicated HF endpoint or load-local are the guaranteed options |
 | P2 — extraction in pipeline | ✅ shipped `media-pipeline#2` (`src/extract.ts`, `derived/notes/{id}.json`, `GET /assets/{id}/notes`, migration 0003, 78 tests) — auto-publish to KB still pending |
+| P2 — production deploy | ✅ deployed + enabled (same HF DNS gate as P1) |
 | P3 — TTS playback | 🔲 future |
 
 ## 3. Data & storage (additions)
