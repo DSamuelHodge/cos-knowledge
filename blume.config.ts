@@ -13,6 +13,7 @@ export default defineConfig({
       section: { facets: ["category", "status"] },
       person: { facets: ["category", "status"] },
       project: { facets: ["category", "status"] },
+      intent: { facets: ["category", "status"] },
       decision: { facets: ["category", "status"] },
       briefing: { facets: ["category", "status"] },
       workflow: { facets: ["category", "status"] },
